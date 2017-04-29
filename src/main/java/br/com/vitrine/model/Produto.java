@@ -1,28 +1,39 @@
-package br.com.loja.model;
+package br.com.vitrine.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /***
  * 
  * @author Hugo Trindade
  * @version 1.0
  */
+@Entity
 public class Produto implements Serializable{
 
 	
 	private static final long serialVersionUID = -872830435452287489L;
-	private long id;
+	@Id
+	@GeneratedValue
+	private Integer id;
 	private String nome;
 	private String urlFoto;
+	@Column(columnDefinition="TEXT")
 	private String descricao;
 	private double preco;
+	@ManyToMany
 	private List<Categoria> categorias;
 	private Marca marca;
 	
 	public Produto(){
-		categorias = new ArrayList();
+		this.categorias = new ArrayList<>();
 	}
 	
 	/*** Método para associar categorias ao produto
@@ -35,11 +46,11 @@ public class Produto implements Serializable{
 		}
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
