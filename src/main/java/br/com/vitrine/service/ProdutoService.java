@@ -38,7 +38,7 @@ public class ProdutoService{
 		
 		if(!specifications.isEmpty()){
 			Specification<Produto> resultado = constroiResultado(specifications);
-	     
+			
 	        return repository.findAll(resultado);
 		} else {
 			return null;
@@ -50,6 +50,7 @@ public class ProdutoService{
 		
 		for (int i = 1; i < specifications.size(); i++) 
 		    resultado = Specifications.where(resultado).and(specifications.get(i));
+		
 		return resultado;
 	}
 

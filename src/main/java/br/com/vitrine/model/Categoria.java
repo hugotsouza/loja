@@ -5,12 +5,16 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 /***
  * 
  * @author Hugo Trindade
  * @version 1.0
  */
 @Entity
+@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Categoria implements Serializable{
 	
 	private static final long serialVersionUID = 6159236938320128278L;

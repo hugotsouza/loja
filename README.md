@@ -1,2 +1,2 @@
-# loja
-Projeto de loja usando spring boot 
+# vitrine
+Projeto vitrine usando spring boot, spring data, specification pattern 

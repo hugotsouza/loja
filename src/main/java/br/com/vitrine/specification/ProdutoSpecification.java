@@ -23,7 +23,7 @@ public final class ProdutoSpecification {
 			@Override
 			public Predicate toPredicate(Root<Produto> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				Path<String> nomePath = root.<String> get("nome");		   				
-			    return cb.like(nomePath, String.format("%s%", nome.trim()));
+			    return cb.like(nomePath, "%" + nome.trim() +"%");
 			}
 		};
 	

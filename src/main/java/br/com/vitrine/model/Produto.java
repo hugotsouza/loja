@@ -9,6 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /***
  * 
@@ -16,6 +20,7 @@ import javax.persistence.ManyToMany;
  * @version 1.0
  */
 @Entity
+@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Produto implements Serializable{
 
 	
@@ -29,7 +34,9 @@ public class Produto implements Serializable{
 	private String descricao;
 	private double preco;
 	@ManyToMany
+	@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 	private List<Categoria> categorias;
+	@OneToOne
 	private Marca marca;
 	
 	public Produto(){
