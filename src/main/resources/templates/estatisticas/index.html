@@ -7,7 +7,7 @@
 	<div th:replace="fragments/top :: content"></div>
 	<div class="col-sm-8">
 		<div class="panel panel-default">
-			<div class="panel-heading">Estatísticas</div>
+			<div class="panel-heading">Estatísticas(cache)</div>
 			<div class="panel-body">
 				<div class="container">
 					<div class="col-sm-8">
@@ -19,8 +19,6 @@
 									<th>Miss(acesso ao banco)</th>
 									<th>
 										Entidades em cache
-										<a class="warning glyphicon glyphicon-exclamation-sign green"
-										 title="Uma entidade e uma coleção referente a mesma não se somam" />
 									</th>
 								</tr>
 							</thead>
@@ -38,7 +36,7 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th>Entidades/coleções disponiveis para cache</th>
+									<th>Entidades/coleções qualificadas para cache</th>
 
 								</tr>
 							</thead>
