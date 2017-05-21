@@ -2,6 +2,7 @@ package br.com.vitrine.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,9 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /***
  * 
@@ -28,8 +31,11 @@ public class Produto implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer id;
+	@NotEmpty
 	private String nome;
+	@NotEmpty
 	private String urlFoto;
+	@NotEmpty
 	@Column(columnDefinition="TEXT")
 	private String descricao;
 	private double preco;
@@ -38,6 +44,9 @@ public class Produto implements Serializable{
 	private List<Categoria> categorias;
 	@ManyToOne
 	private Marca marca;
+	
+	@Version
+	private int version;
 	
 	public Produto(){
 		this.categorias = new ArrayList<>();
@@ -94,7 +103,7 @@ public class Produto implements Serializable{
 	}
 
 	public List<Categoria> getCategorias() {
-		return categorias;
+		return Collections.unmodifiableList(categorias);
 	}
 
 	public void setCategorias(List<Categoria> categorias) {
@@ -107,6 +116,15 @@ public class Produto implements Serializable{
 
 	public void setMarca(Marca marca) {
 		this.marca = marca;
+	}
+
+	public int getVersion() {
+		// TODO Auto-generated method stub
+		return this.version;
+	}
+	
+	public void setVersion(int version) {
+		this.version = version;
 	}
 	
 }

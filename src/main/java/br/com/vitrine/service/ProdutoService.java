@@ -37,7 +37,7 @@ public class ProdutoService{
 			specifications.add(ProdutoSpecification.whereMarca(marcaId));
 		
 		if(!specifications.isEmpty()){
-			Specification<Produto> resultado = constroiResultado(specifications);
+			Specification<Produto> resultado = constroiQuery(specifications);
 			
 	        return repository.findAll(resultado);
 		} else {
@@ -45,13 +45,31 @@ public class ProdutoService{
 		}
 	}
 
-	private Specification<Produto> constroiResultado(List<Specification<Produto>> specifications) {
+	/***
+	 * Método auxiliar para construir a query final com base nas especificacoes.
+	 * @param specifications - Lista com todas as especificacoes da busca.
+	 * @return Specification<Produto> - Especificação final da busca.
+	 */
+	private Specification<Produto> constroiQuery(List<Specification<Produto>> specifications) {
 		Specification<Produto> resultado = specifications.get(0);
 		
 		for (int i = 1; i < specifications.size(); i++) 
 		    resultado = Specifications.where(resultado).and(specifications.get(i));
 		
 		return resultado;
+	}
+
+	public void insere(Produto produto) {
+			repository.save(produto);
+	}
+
+	public Produto getProduto(Integer id) {
+		
+		return repository.findOne(id);
+	}
+
+	public List<Produto> getProdutos() {
+		return repository.findAll();
 	}
 
 	

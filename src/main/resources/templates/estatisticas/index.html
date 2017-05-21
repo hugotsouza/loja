@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/top :: header" />
+<body>
+	<div th:replace="fragments/top :: content"></div>
+	<div class="col-sm-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">Estatísticas</div>
+			<div class="panel-body">
+				<div class="container">
+					<div class="col-sm-8">
+						<a href="#" th:href="@{/estatisticas/limpar}">Limpar</a>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Hit(acesso ao cache)</th>
+									<th>Miss(acesso ao banco)</th>
+									<th>
+										Entidades em cache
+										<a class="warning glyphicon glyphicon-exclamation-sign green"
+										 title="Uma entidade e uma coleção referente a mesma não se somam" />
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<!-- <td>Cache</td> -->
+									<!-- Hit -->
+									<td><p th:text="${@statistics.queryCacheHitCount}"></p></td>
+									<!-- Miss -->
+									<td><p th:text="${@statistics.queryCacheMissCount}"></p></td>
+									<td><p th:text="${@statistics.secondLevelCacheHitCount}"></p></td>
+								</tr>
+							</tbody>
+						</table>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Entidades/coleções disponiveis para cache</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="nome: ${@statistics.secondLevelCacheRegionNames}">
+									<!-- <td>Cache</td> -->
+									<!-- Hit -->
+									<td th:text="${nome}"></td>
+
+								</tr>
+																		
+								
+							</tbody>
+
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
